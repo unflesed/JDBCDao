@@ -145,8 +145,14 @@ public class ClientJDBCDao implements ClientDAO {
             statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            try {
+                connection.close();
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-
     }
     private Connection getConnection() {
         Connection connection = null;
